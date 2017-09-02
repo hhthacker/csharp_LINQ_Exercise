@@ -38,7 +38,8 @@ namespace LINQ_Practice
         [TestMethod]
         public void GetFirstCohortWherePrimaryInstructorIsKate()
         {
-            var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            //var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            var ActualCohort = PracticeData.First(Cohort => Cohort.PrimaryInstructor.FirstName == "Kate");
             Assert.AreEqual(ActualCohort, CohortBuilder.Cohort4);
         }
 
@@ -46,21 +47,24 @@ namespace LINQ_Practice
         [TestMethod]
         public void GetFirstCohortWithThreeJuniorInstructors()
         {
-            var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            //var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            var ActualCohort = PracticeData.First(Cohort => Cohort.JuniorInstructors.Count() == 3);
             Assert.AreEqual(ActualCohort, CohortBuilder.Cohort3);
         }
 
         [TestMethod]
         public void GetFirstCohortThatIsFullTimeAndPrimaryInstructorBirthdayInTheFuture()
         {
-            var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            //var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            var ActualCohort = PracticeData.First(Cohort => Cohort.FullTime == true && Cohort.PrimaryInstructor.Birthday > DateTime.Now);
             Assert.AreEqual(ActualCohort, CohortBuilder.Cohort2);
         }
 
         [TestMethod]
         public void GetFirstCohortWithInstructorNamedZeldaOrNull()
         {
-            var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            //var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            var ActualCohort = PracticeData.FirstOrDefault(cohort => cohort.PrimaryInstructor.FirstName == "Zelda");
             Assert.IsNull(ActualCohort);
         }
 
@@ -68,13 +72,15 @@ namespace LINQ_Practice
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void GetFirstCohortThatIsBothNotActiveAndNotFullTimeOrThrowException()
         {
-            var shouldThrowException = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            //var shouldThrowException = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            var shouldThrowException = PracticeData.First(Cohort => Cohort.Active == false && Cohort.FullTime == false);
         }
 
         [TestMethod]
         public void GetFirstCohortWith2JuniorInstructors()
         {
-            var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            //var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            var ActualCohort = PracticeData.First(Cohort => Cohort.JuniorInstructors.Count() == 2);
             Assert.AreEqual(ActualCohort, CohortBuilder.Cohort1);
         }
 
